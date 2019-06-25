@@ -1,4 +1,4 @@
-/* 5.4 A vector type
+/* 6.1 A vector type
     author: SheronW
     date: 6/24/2019 */
 
