@@ -8,3 +8,4 @@ You could find the textbook [here](http://eloquentjavascript.net/).
 - 05 Higher-Order Functions
 - 06 The Secret Life of Objects
 - 07 Project: A Robot
+- 08 Bugs and Errors
