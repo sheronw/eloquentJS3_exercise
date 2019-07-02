@@ -7,3 +7,4 @@ You could find the textbook [here](http://eloquentjavascript.net/).
 - 02 03 04 are skipped
 - 05 Higher-Order Functions
 - 06 The Secret Life of Objects
+- 07 Project: A Robot
