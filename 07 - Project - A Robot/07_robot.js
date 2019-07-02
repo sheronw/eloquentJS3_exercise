@@ -1,6 +1,6 @@
 /* 7 A Robot
     author: SheronW
-    date: 07/01/2019 */
+    date: 7/1/2019 */
 
     /* The animation version, made by the book's auther:
         http://eloquentjavascript.net/code/animatevillage.js */
