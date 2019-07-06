@@ -9,3 +9,4 @@ You could find the textbook [here](http://eloquentjavascript.net/).
 - 06 The Secret Life of Objects
 - 07 Project: A Robot
 - 08 Bugs and Errors
+- 09 Regular Expressions
