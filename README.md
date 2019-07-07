@@ -10,3 +10,4 @@ You could find the textbook [here](http://eloquentjavascript.net/).
 - 07 Project: A Robot
 - 08 Bugs and Errors
 - 09 Regular Expressions
+- 10 Modules
