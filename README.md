@@ -11,3 +11,4 @@ You could find the textbook [here](http://eloquentjavascript.net/).
 - 08 Bugs and Errors
 - 09 Regular Expressions
 - 10 Modules
+- 11 Asynchronous Programming
