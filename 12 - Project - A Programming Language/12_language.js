@@ -51,7 +51,7 @@ function parseApply(expr, program){
       program = skipSpace(program.slice(1));
     }
     else if(arg.rest[0]!=")"){
-      throw new SyntaxError(`Expected "," or ")"`);
+      throw new SyntaxError("Expected ',' or ')'");
     }
   }
   // an application expression can itself be applied,
@@ -61,6 +61,28 @@ function parseApply(expr, program){
 
 
 /* The Evaluator */
+const specialForms = Object.create(null);
+
+function evaluate(expr, scope){
+  if(expr.type == "value") return expr.value;
+  if(expr.type == "word"){
+    if(expr.name in scope) return scope[expr.name];
+    throw new ReferenceError(`Undefined binding: ${expr.name}`);
+  }
+  if(expr.type == "apply"){
+    let {operator, args} = expr;
+    if(operator.type == "word" && operator.name in specialForms){
+      // predefined
+      return specialForms[operator.name](args, scope);
+    }
+    else{
+      // function
+      let op = evaluate(operator, scope);
+      if(typeof op == "Function") return op(...args.map(arg => evaluate(arg, scope)));
+      else throw new TypeError("Applying a Non-function");
+    }
+  }
+}
 
 
 /* Special Forms */
