@@ -90,7 +90,7 @@ specialForms.if = (args, scope) => {
   if(args.length!=3) throw new SyntaxError("Wrong Number of Arguments to if");
   else if(evaluate(args[0], scope) !== false) return evaluate(args[1], scope);
   else return evaluate(args[2], scope);
-}
+};
 
 specialForms.while = (args, scope) =>{
   if(args.length!=2) throw new SyntaxError("Wrong Number of Arguments to while");
@@ -98,7 +98,7 @@ specialForms.while = (args, scope) =>{
     evaluate(args[1], scope);
   }
   return false;
-}
+};
 
 specialForms.do = (args, scope) => {
   let value = false;
@@ -106,7 +106,7 @@ specialForms.do = (args, scope) => {
     value = evaluate(arg, scope);
   }
   return value;
-}
+};
 
 specialForms.define = (args, scope) => {
   if(args.length!=2 || args[0].type!="word"){
@@ -115,7 +115,7 @@ specialForms.define = (args, scope) => {
   let value = evaluate(args[1], scope);
   scope[args[0].name] = value;
   return value;
-}
+};
 
 
 /* The Environment */
@@ -131,10 +131,29 @@ for(let op of ["+", "-", "*", "/", "==", "<", ">"]){
 topScope.print = value =>{
   console.log(value);
   return value;
-}
+};
 
 function run(program){
   return evaluate(parse(program), Object.create(topScope));
 }
 
 /* Functions */
+specialForms.fun = (args, scope) => {
+  if(!args.length) throw new SyntaxError("Function Need a Body");
+  let body  = args[args.length-1];
+
+  let params = args.slice(0, args.length-1).map(param => {
+    if(param.type!="word") throw new SyntaxError("Parameters' Names Must Be Words");
+    return param.name;
+  })
+
+  return function(){
+    // You can refer to a function's arguments within the function by using the arguments object.
+    if(arguments.length!=params.length) throw new SyntaxError("Wrong Number of Arguments");
+    let localScope = Object.create(scope);
+    for(let i = 0; i<arguments.length;i++){
+      localScope[params[i]] = arguments[i];
+    }
+    return evaluate(body, localScope);
+  };
+};
