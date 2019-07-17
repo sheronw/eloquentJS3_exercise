@@ -1,6 +1,6 @@
 /* 12.1 Array
     author: SheronW
-    date: 7/14/2019 */
+    date: 7/16/2019 */
 
     // According to author's solution, there's no need to write complicated code
     // for example, instead of wraping it into a new array, you could just return the input array
