@@ -1,4 +1,4 @@
-# Eloquent JavaScript Third Edition Excercise & Notes
+# Eloquent JavaScript Third Edition Exercises & Notes
 ## About
 This is SheronW's repository for Eloquent JavaScript(third edition) Exercises and projects.
 
@@ -13,3 +13,5 @@ You could find the textbook [here](http://eloquentjavascript.net/).
 - 10 Modules
 - 11 Asynchronous Programming
 - 12 Project: A Programming Language
+- 13 no exercises
+- 14 the Document Object Model

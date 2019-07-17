@@ -1,0 +1,30 @@
+<!-- 14 the DOM -->
+<!-- author: SheronW -->
+<!-- date: 7/17/2019 -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>まわるゆっくり</title>
+  </head>
+  <body>
+    <p style="text-align: center">
+      <img src="yukuri.jpg" style="position: relative">
+    </p>
+    <script type="text/javascript">
+      let yukuri = document.querySelector("img");
+      let angle = Math.PI / 2;
+      function animate(time, lastTime){
+        if(lastTime!=null){
+          // we don't need to update it the first time
+          angle += (time-lastTime)*0.001;
+        }
+        yukuri.style.top = (Math.sin(angle)*20) + "px";
+        yukuri.style.left = (Math.cos(angle)*200) + "px";
+        requestAnimationFrame(newTime => animate(newTime, time));
+      }
+      requestAnimationFrame(animate);
+    </script>
+  </body>
+</html>
