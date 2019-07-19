@@ -1,0 +1,30 @@
+<!-- 15.1 Balloon -->
+<!-- author: SheronW -->
+<!-- date: 7/19/2019 -->
+
+<!doctype html>
+
+<p>🎈</p>
+
+<script>
+  let balloon = document.querySelector("p");
+  let size = 20;
+  balloon.style.fontSize = size + "px";
+  function change(event) {
+    if(event.key=="ArrowUp"){
+      if(size > 70){
+        balloon.textContent = "💥";
+        window.removeEventListener("keydown", change);
+      }
+      size = size * 1.1;
+      balloon.style.fontSize = size + "px";
+      event.preventDefault();
+    }
+    if(event.key=="ArrowDown"){
+      size = size * 0.9;
+      balloon.style.fontSize = size + "px";
+      event.preventDefault();
+    }
+  }
+  window.addEventListener("keydown", change);
+</script>
