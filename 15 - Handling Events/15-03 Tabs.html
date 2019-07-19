@@ -1,0 +1,47 @@
+<!-- 15.3 Tabs -->
+<!-- author: SheronW -->
+<!-- date: 7/19/2019 -->
+
+
+<!doctype html>
+
+<tab-panel>
+  <div data-tabname="one">Tab one</div>
+  <div data-tabname="two">Tab two</div>
+  <div data-tabname="three">Tab three</div>
+</tab-panel>
+<script>
+  // It is not a really elegant solution.
+  // The author's method is to wrap both button and div content together and return a list at the 1st stage
+
+  function asTabs(node) {
+    let members = Array.from(node.children);
+    let list = members.map(c =>{
+      c.style.display="none";
+      let b = document.createElement("button");
+      b.textContent = c.getAttribute("data-tabname");
+
+      b.addEventListener("click", event =>{
+        b.style.color="red";
+        for(let buttons of list){
+          if(b==buttons) buttons.style.color="red";
+          else buttons.style.color="";
+        }
+        for(let ele of members){
+          if(ele.getAttribute("data-tabname")!=b.textContent){
+            ele.style.display="none";
+          }
+          else{
+            ele.style.display="";
+          }
+        }
+      });
+      return b;
+  	});
+
+    let buttons = document.createElement("div");
+    for(let b of list) buttons.appendChild(b);
+    node.prepend(buttons);
+  }
+  asTabs(document.querySelector("tab-panel"));
+</script>
