@@ -1,0 +1,38 @@
+<!-- 15.2 Mouse Trail -->
+<!-- author: SheronW -->
+<!-- date: 7/19/2019 -->
+
+<!doctype html>
+
+<style>
+  .trail { /* className for the trail elements */
+    position: absolute;
+    height: 6px; width: 6px;
+    border-radius: 3px;
+    background: teal;
+  }
+  body {
+    height: 300px;
+  }
+</style>
+
+<script>
+  // Your code here.
+  let elements = [];
+  let n = 5;
+  let current = 0;
+  function moved(event){
+    if(elements.length==0){
+      for(let i = 0; i < n; i++){
+      	let trail = document.createElement("div");
+      	trail.className = "trail";
+        document.body.appendChild(trail);
+        elements.push(trail);
+      }
+    }
+    elements[current].style.left = (event.clientX - 3) + "px";
+    elements[current].style.top = (event.clientY - 3) + "px";
+    current = (current+1) % n;
+  }
+  window.addEventListener("mousemove", moved);
+</script>
