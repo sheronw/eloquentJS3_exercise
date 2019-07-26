@@ -194,6 +194,56 @@ DOMDisplay.prototype.scrollPlayerIntoView = function(state) {
 };
 
 // Motion and Collision
+Level.prototype.touches = function(pos, size, type){
+  let startX = Math.floor(pos.x);
+  let endX = Math.ceil(pos.x + size.x);
+  let startY = Math.floor(pos.y);
+  let endY = Math.ceil(pos.y + size.y);
+
+  for(let y=startY; y<endY; y++){
+    for(let x=startX; x<endX; x++){
+      let out = x<0 || y<0 || x>=this.width || y>=this.height;
+      let loc = out ? "wall" : this.row[y][x];
+      if(loc == type) return true;
+    }
+  }
+  return false;
+};
+
+State.prototype.update = function(time, keys){
+  let actors = this.actors.map(actor => actor.updata(time,this,keys));
+  let newState = new State(this.level, actors, this.status);
+
+  if(this.status != "playing") return newState;
+
+  let newPlayer = newState.player;
+  if(this.level.touches(newPlayer.pos, newPlayer.size, "lava")) return new State(this.level, actors, "lost");
+
+  for(let actor of actors){
+    if(actor != newPlayer && overlap(newPlayer, actor)){
+      return actor.collide(newState);
+    }
+  }
+  return newState;
+};
+
+function overlap(a1, a2){
+  return a1.pos.x + al.size.x > a2.pos.x &&
+            a1.pos.x < a2.pos.x + a2.size.x &&
+            a1.pos.y + al.size.y > a2.pos.y &&
+            a1.pos.y < a2.pos.y + a2.size.y;
+}
+
+Lava.prototype.collide = function(state){
+  return new State(state.level, state.actors, "lost");
+}
+
+Coin.prototype.collide = function(state){
+  let except = state.actors.filter(a => a!=this);
+  let status = state.status;
+  if(!except.some(a => a.type=="coin")) status = "won";
+  return new State(state.level, except, status);
+}
 
 // Actor Updates
 
