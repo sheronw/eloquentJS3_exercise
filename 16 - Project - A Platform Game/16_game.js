@@ -246,7 +246,7 @@ Coin.prototype.collide = function(state){
 }
 
 // Actor Updates
-Lava.prototype.updata = function(time, state) {
+Lava.prototype.update = function(time, state) {
   let newPos = this.pos.plus(this.speed.times(time));
   if(!state.level.touches(newPos, this.size, "wall")){
     return new Lava(newPos, this.speed, this.reset);
