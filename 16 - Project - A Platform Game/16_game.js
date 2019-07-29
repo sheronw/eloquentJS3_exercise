@@ -1,4 +1,4 @@
-/* 12 A Programming Language
+/* 16 A Platform Game
     author: SheronW
     date: 7/24/2019 */
 
