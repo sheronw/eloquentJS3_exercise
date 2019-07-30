@@ -15,3 +15,6 @@ You could find the textbook [here](http://eloquentjavascript.net/).
 - 12 Project: A Programming Language
 - 13 no exercises
 - 14 the Document Object Model
+- 15 Handling Events
+- 16 Project: A Platform Game
+- 17 Drawing on Canvas
