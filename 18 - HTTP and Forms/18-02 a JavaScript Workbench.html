@@ -1,0 +1,30 @@
+<!doctype html>
+<script src="code/chapter/18_http.js"></script>
+
+<textarea id="code">return "hi";</textarea>
+<button id="button">Run</button>
+<pre id="output"></pre>
+
+<script>
+  /* 18.1 a JavaScript WorkBench
+      author: SheronW
+      date: 8/1/2019 */
+      let script = document.querySelector("textarea");
+      let output = document.querySelector("pre");
+
+      document.querySelector("button")
+    .addEventListener("click", () => {
+      runScript(script.value);
+    });
+
+    function runScript(value){
+      try{
+        let result = Function("", value);
+        output.textContent = String(result());
+      }
+      catch(error){
+        output.textContent = String(error);
+      }
+
+    }
+</script>
