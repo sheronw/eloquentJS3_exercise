@@ -18,3 +18,4 @@ You could find the textbook [here](http://eloquentjavascript.net/).
 - 15 Handling Events
 - 16 Project: A Platform Game
 - 17 Drawing on Canvas
+- 18 HTTP and Forms
