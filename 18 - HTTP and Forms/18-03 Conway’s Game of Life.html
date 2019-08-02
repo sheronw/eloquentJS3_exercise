@@ -1,0 +1,60 @@
+<!doctype html>
+<script src="code/chapter/18_http.js"></script>
+
+<div id="grid"></div>
+<button id="next">Next generation</button>
+
+<script>
+  /* 18.2 Conway's Game of Life
+      author: SheronW
+      date: 8/2/2019 */
+
+      const w = 30, h = 15;
+
+      let gridNode = document.querySelector("#grid");
+      let grid = [];
+
+      // init grid
+      for(let y=0; y<h; y++){
+        grid.push([]);
+        for(let x=0; x<w; x++){
+          let box = document.createElement("input");
+          box.type = "checkbox";
+          box.checked = Math.random()<0.5;
+          gridNode.appendChild(box);
+          grid[y].push(box);
+        }
+        gridNode.appendChild(document.createElement("br"));
+      }
+
+      document.querySelector("button").addEventListener("click", changeState);
+
+      function changeState(){
+        let change = [];
+        for(let y=0; y<h; y++){
+          for(let x=0; x<w; x++){
+            let n = countNeighbor(x, y);
+            if(grid[y][x].checked){
+              if(n<2 || n>3) change.push(grid[y][x]);
+            }
+            else{
+              if(n==3) change.push(grid[y][x]);
+            }
+          }
+        }
+        for(let c of change){
+          c.checked = !c.checked;
+        }
+      }
+
+      function countNeighbor(x,y){
+        let n = 0;
+        for(let i=Math.max(0,y-1); i<=Math.min(h-1, y+1); i++){
+          for(let j=Math.max(0, x-1); j<=Math.min(w-1, x+1); j++){
+            if(x==j && y==i) continue;
+            if(grid[i][j].checked) n++;
+          }
+        return n;
+      }
+
+</script>
