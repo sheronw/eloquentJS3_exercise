@@ -19,3 +19,4 @@ You could find the textbook [here](http://eloquentjavascript.net/).
 - 16 Project: A Platform Game
 - 17 Drawing on Canvas
 - 18 HTTP and Forms
+- 19 Project: A Pixel Art Editor
