@@ -300,5 +300,38 @@ function pictureFromImage(image){
 }
 
 // Undo History
+class UndoButton {
+  constructor(state, {dispatch}) {
+    this.dom = elt("button", {
+      onclick: () => dispatch({undo: true}),
+      disabled: state.done.length ==0
+    }, "Undo");
+  }
+  syncState(state) {
+    this.dom.disabled = state.done.length==0;
+  }
+}
+
+function historyUpdateState(state, action) {
+  if(action.undo == true){ // do the real undo action
+    if (state.done.length == 0) return state;
+    return Object.assign({}, state, {
+      picture: picture.done[0],
+      done: state.done.slice(1),
+      doneAt: 0;
+    });
+  }
+  else if(action.picture &&
+             state.doneAt < Date.now() - 1000) {
+    // if action contains a new picture, and is far from last storing, save new picture
+    return Object.assign({}, state, action, {
+      done: [state.picture, ... state.done],
+      doneAt: Date.now();
+    });
+  }
+  else { // time is not long enough to make a new storing
+    return Object.assign({}, state, action);
+  }
+}
 
 // Let's Draw
