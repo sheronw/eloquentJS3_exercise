@@ -142,7 +142,7 @@ class PixelEditor{
   }
   syncState(state){
     this.state = state;
-    this.canvas.synyState(state.picture);
+    this.canvas.syncState(state.picture);
     for(let ctrl of this.controls) ctrl.syncState(state);
   }
 }
