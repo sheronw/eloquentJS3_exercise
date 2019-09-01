@@ -1,0 +1,11 @@
+{
+  "author": "Xuran Wang",
+  "name": "eloquent-javascript-exercise-ch20",
+  "description": "Eloquent Javascript Ch.20 Exercise",
+  "version": "1.0.0",
+  "main": "20_file_server.js",
+  "dependencies": {
+    "mime": "^2.2.0"
+  },
+  "license": "MIT"
+}
