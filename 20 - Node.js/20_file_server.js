@@ -13,12 +13,13 @@
           if(error.status != null) return error;
           return {body: String(error), status: 500};
         })
-        .then({body, status = 200, type = "text/plain"} => {
+        .then(({body, status = 200, type = "text/plain"}) => {
           response.writeHead(status, {"Content-Type": type});
           if (body && body.pipe) body.pipe(response);
           else response.end(body);
         });
     }).listen(8000);
+    console.log("Listening! (port 8000)");
 
     async function notAllowed(request) {
       return {
@@ -60,7 +61,7 @@ methods.GET = async function(request) {
     else return {status: 404, body: "File Not Found"};
   }
   if (stats.isDirectory()){
-    return {body: (await readdir(path).join("\n")};
+    return {body: (await readdir(path)).join('\n')};
   }
   else{
     return {body: createReadStream(path),
